@@ -16,7 +16,7 @@ public class DummyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String base() {
-        return "Hola Avianca!! Plese use any of these paths /dummy/fast, /dummy/slow-1, /dummy/slow-3, /dummy/slow-5 or /dummy/slow-10";
+        return "Plese use any of these paths /dummy/fast, /dummy/slow-1, /dummy/slow-3, /dummy/slow-5 or /dummy/slow-10";
     }
 
     @GET
