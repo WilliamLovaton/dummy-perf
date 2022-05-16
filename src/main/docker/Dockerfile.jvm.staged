@@ -21,7 +21,9 @@ FROM registry.access.redhat.com/ubi8/openjdk-11:latest
 
 USER root
 WORKDIR /build
-RUN mkdir -p .mvn/wrapper
+RUN mkdir -p .mvn/wrapper \
+    && pwd \
+    && ls -l
 # Build dependency offline to streamline build
 COPY mvnw* .
 COPY .mvn/wrapper .mvn/wrapper
