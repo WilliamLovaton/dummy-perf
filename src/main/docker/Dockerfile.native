@@ -14,7 +14,7 @@
 # docker run -i --rm -p 8080:8080 quarkus/dummy
 #
 ###
-#FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
+#FROM registry.redhat.io/ubi8/ubi-minimal:latest
 FROM registry.redhat.io/rhel8/support-tools:latest
 WORKDIR /work/
 RUN chown 1001 /work \
