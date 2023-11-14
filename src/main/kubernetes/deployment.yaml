@@ -23,7 +23,8 @@ spec:
         app.openshift.io/runtime: quarkus
     spec:
       containers:
-        - imagePullPolicy: Always
+        - image: placeholder
+          imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
             httpGet:
