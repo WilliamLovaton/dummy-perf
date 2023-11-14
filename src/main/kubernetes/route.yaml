@@ -12,3 +12,6 @@ spec:
   to:
     kind: Service
     name: dummy-perf
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
