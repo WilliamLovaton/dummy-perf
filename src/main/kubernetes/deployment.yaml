@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.openshift.io/vcs-url: https://github.com/WilliamLovaton/dummy-perf
+  labels:
+    app.kubernetes.io/name: dummy-perf
+    app.kubernetes.io/part-of: dummy-perf-app
+    app.openshift.io/runtime: quarkus
+  name: dummy-perf
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: dummy-perf
+  template:
+    metadata:
+      annotations:
+        app.openshift.io/vcs-url: https://github.com/WilliamLovaton/dummy-perf
+      labels:
+        app.kubernetes.io/name: dummy-perf
+        app.kubernetes.io/part-of: dummy-perf-app
+        app.openshift.io/runtime: quarkus
+    spec:
+      containers:
+        - imagePullPolicy: Always
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/live
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          name: dummy-perf
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /q/health/ready
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 0
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+            requests:
+              cpu: 40m
+              memory: 64Mi
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            timeoutSeconds: 1
+            periodSeconds: 1
+            successThreshold: 1
+            failureThreshold: 60
